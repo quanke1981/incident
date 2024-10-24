@@ -24,4 +24,12 @@ public class IncidentService {
 
         return mvcConversionService.convert(incidentEntity, Incident.class);
     }
+
+    public Incident createIncident(String name, String description) {
+        IncidentEntity incidentEntity = new IncidentEntity();
+        incidentEntity.setName(name);
+        incidentEntity.setDescription(description);
+
+        return mvcConversionService.convert(incidentRepository.save(incidentEntity), Incident.class);
+    }
 }
