@@ -8,15 +8,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.convert.support.GenericConversionService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
-import static com.example.incident.converter.IncidentEntityToIncident.INCIDENT_LIST;
 
 @Service
 public class IncidentService {
@@ -41,10 +35,11 @@ public class IncidentService {
                 .map(incidentEntity -> mvcConversionService.convert(incidentEntity, Incident.class)));
     }
 
-    public Incident createIncident(String name, String description) {
+    public Incident createIncident(Incident incident) {
         IncidentEntity incidentEntity = new IncidentEntity();
-        incidentEntity.setName(name);
-        incidentEntity.setDescription(description);
+        incidentEntity.setName(incident.getName());
+        incidentEntity.setDescription(incident.getDescription());
+        incidentEntity.setStatus(incident.getStatus());
 
         return mvcConversionService.convert(incidentRepository.save(incidentEntity), Incident.class);
     }
@@ -59,11 +54,12 @@ public class IncidentService {
     }
 
     @Transactional
-    @CacheEvict(cacheNames = "incidentCache", key = "#incident.id")
+    @CacheEvict(cacheNames = "incidentCache", key = "#id")
     public Incident updateIncident(Incident incident, long id) {
         IncidentEntity incidentEntity = getIncidentById(id);
         incidentEntity.setName(incident.getName());
         incidentEntity.setDescription(incident.getDescription());
+        incidentEntity.setStatus(incident.getStatus());
         return mvcConversionService.convert(incidentRepository.save(incidentEntity), Incident.class);
     }
 

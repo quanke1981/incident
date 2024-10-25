@@ -28,7 +28,7 @@ public class IncidentRestController {
 
     @PostMapping("/incidents")
     public ResponseEntity<Incident> createIncident(@RequestBody Incident incident) {
-        return ResponseEntity.ok(incidentService.createIncident(incident.getName(), incident.getDescription()));
+        return ResponseEntity.ok(incidentService.createIncident(incident));
     }
 
     @PutMapping("/incidents/{id}")

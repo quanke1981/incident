@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "incident")
 public class IncidentEntity {
 
     @Id
@@ -15,6 +15,8 @@ public class IncidentEntity {
     private String name;
 
     private String description;
+
+    private String status;
 
     public Long getId() {
         return id;
@@ -38,5 +40,13 @@ public class IncidentEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

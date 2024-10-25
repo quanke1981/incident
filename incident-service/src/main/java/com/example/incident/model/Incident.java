@@ -9,6 +9,8 @@ public class Incident implements Serializable {
 
     private String description;
 
+    private String status;
+
     public Long getId() {
         return id;
     }
@@ -31,5 +33,13 @@ public class Incident implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
