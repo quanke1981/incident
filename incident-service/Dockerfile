@@ -1,8 +1,7 @@
-#ARG REGISTRY=xxx/base-image
-#FROM $REGISTRY/openjdk:17.0.13-jdk
+FROM openjdk:17
 
+VOLUME /tmp
 COPY taget/incident-0.0.1-SNAPSHOT.jar /usr/local/incident
-#COPY application-docker.yml /usr/local/incident
 
 EXPOSE 8080
 WORKDIR /usr/local/incident
