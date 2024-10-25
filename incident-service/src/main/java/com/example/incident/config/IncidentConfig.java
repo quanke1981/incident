@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class IncidentConfig {
 
-    @Bean
-    public DatasourceProxyBeanPostProcessor datasourceProxyBeanPostProcessor() {
-        return new DatasourceProxyBeanPostProcessor();
-    }
+//    @Bean
+//    public DatasourceProxyBeanPostProcessor datasourceProxyBeanPostProcessor() {
+//        return new DatasourceProxyBeanPostProcessor();
+//    }
 }
