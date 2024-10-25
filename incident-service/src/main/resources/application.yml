@@ -7,11 +7,14 @@ spring:
     password:
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate.ddl-auto: update
+    open-in-view: false
 
   flyway:
     enabled: true
     locations: classpath:db/migration
     placeholders:
       env_schema: PUBLIC
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
