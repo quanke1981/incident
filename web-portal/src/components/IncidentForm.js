@@ -14,7 +14,6 @@ const IncidentForm = ({ onSubmit, incident}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h3>Create New Incident</h3>
             <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title' required/>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Description' required/>
             <select value={status} onChange={(e) => setStatus(e.target.value)}>

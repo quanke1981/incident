@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import IncidentPage from './pages/IncidentPage';
 import NewIncidentPage from './pages/NewIncidentPage';
 import EditIncidentPage from './pages/EditIncidentPage';
+import './App.css';
 
 function App() {
     return (
