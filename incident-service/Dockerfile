@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jre AS runtime
 
-WORKDIR /app
+WORKDIR /app/web-portal
 
 COPY target/incident-0.0.1-SNAPSHOT.jar app.jar
 

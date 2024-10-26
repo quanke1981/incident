@@ -1,18 +1,12 @@
-##ARG REGISTRY=xxx/base-image
-##FROM $REGISTRY/nginx:1.23.2-alpine
+FROM node:18 AS frontend-build
+WORKDIR /app/web-portal
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx-custom.conf.template /etc/nginx/conf.d/default.conf.template
-COPY Thawte /etc/nginx/ssl/Thawte
-COPY run-nginx.sh /
+COPY . .
+RUN npm install
+RUN npm run build
 
-## remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
+FROM nginx:alpine
+COPY --from=build /app/web-portal/build /usr/share/nginx/html
 
-COPY dist/ /usr/share/nginx/html/dist
-
-RUN chmod 775 /run-nginx.sh
-
-ENTRYPOINT ["/run-nginx.sh"]
+EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
-EXPOSE 80 443
