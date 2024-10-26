@@ -1,8 +1,8 @@
-FROM openjdk:17
+FROM eclipse-temurin:17-jre AS runtime
 
-VOLUME /tmp
-COPY taget/incident-0.0.1-SNAPSHOT.jar /usr/local/incident
+WORKDIR /app
+
+COPY target/incident-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
-WORKDIR /usr/local/incident
-CMD["java", "-jar", "incident-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
