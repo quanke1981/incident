@@ -3,9 +3,6 @@ WORKDIR /app/incident-service
 
 COPY mvnw ./
 COPY pom.xml ./
-
-RUN ./mvnw dependecy:resolve
-
 COPY src ./src
 RUN ./mvnw clean package -DskipTests
 
