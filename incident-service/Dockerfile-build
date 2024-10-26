@@ -1,13 +1,13 @@
 FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
 
-COPY mvnw.cmd ./
+COPY mvnw ./
 COPY pom.xml ./
 
 RUN ./mvnw dependecy:resolve
 
 COPY src ./src
-RUN ./mvnw  clean package -DskipTests
+RUN ./mvnw clean package -DskipTests
 
 FROM eclipse-temurin:17-jre AS runtime
 WORKDIR /app
