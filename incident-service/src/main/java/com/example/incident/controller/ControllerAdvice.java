@@ -1,9 +1,9 @@
 package com.example.incident.controller;
 
 import com.example.incident.exception.IncidentNotFoundException;
-import com.example.incident.exception.InvalidIncidentStatusException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,9 +17,9 @@ public class ControllerAdvice {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
-    @ExceptionHandler(InvalidIncidentStatusException.class)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> invalidIncidentStatusException(InvalidIncidentStatusException e) {
+    public ResponseEntity<String> invalidIncidentStatusException(HttpMessageNotReadableException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
