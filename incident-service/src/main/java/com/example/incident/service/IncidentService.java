@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -58,7 +59,12 @@ public class IncidentService {
         return resultList;
     }
 
-    @Transactional
+    /**
+     * Batch create incidents with small transaction.
+     * @param incidents list of incident to be created.
+     * @return created incidents
+     */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<Incident> createIncidentsInBatch(List<Incident> incidents) {
         List<IncidentEntity> incidentEntities = incidentRepository.saveAll(incidents.stream().map(incident -> {
             IncidentEntity incidentEntity = new IncidentEntity();
