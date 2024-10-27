@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  incident-management-service:
+    build:
+      context: ./incident-management-service
+      dockerfile: Dockerfile
+    container_name: incident-management-service
+    ports:
+      - "8080:8080"
+    environment:
+      - INCIDENT_SERVICE_HOST=incident-management-service  
+
+  web-portal:
+    build:
+      context: ./web-portal
+      dockerfile: Dockerfile
+    container_name: web-portal
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://incident-management-service:8080  # Connects to backend
+    depends_on:
+      - incident-management-service  # Ensure backend starts before frontend

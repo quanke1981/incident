@@ -1,7 +1,9 @@
 FROM node:18 AS frontend-build
 WORKDIR /app/web-portal
+COPY src src
+COPY public public
+COPY *.json .
 
-COPY . .
 RUN npm install
 RUN npm run build
 

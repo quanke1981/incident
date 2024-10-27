@@ -25,7 +25,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `docker build -f ./Dockerfile -t incident-web-portal:latest`
-
-If you would like to deploy the app to docker environment, run docker build -f ./Dockerfile -t incidentwebportal:latest

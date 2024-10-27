@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/incidents';
+const API_URL = `${process.env.REACT_APP_API_URL}/incidents`;
 
 export const getIncidents = () => axios.get(API_URL, { 'Access-Control-Allow-Origin': '*' });
 export const createIncident = (data) => axios.post(API_URL, data, { 'Access-Control-Allow-Origin': '*' });

@@ -1,8 +1,16 @@
-FROM eclipse-temurin:17-jre AS runtime
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app/incident-service
 
-WORKDIR /app/web-portal
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
 
-COPY target/incident-0.0.1-SNAPSHOT.jar app.jar
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
+
+FROM openjdk:17-jdk-slim AS runtime
+COPY --from=build /app/incident-service/target/*.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
