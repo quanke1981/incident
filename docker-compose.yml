@@ -3,7 +3,7 @@ version: '3.8'
 services:
   incident-management-service:
     build:
-      context: ./incident-management-service
+      context: ./incident-service
       dockerfile: Dockerfile
     container_name: incident-management-service
     ports:
