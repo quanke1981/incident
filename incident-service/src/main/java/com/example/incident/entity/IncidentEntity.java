@@ -1,9 +1,6 @@
 package com.example.incident.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "incident")
 public class IncidentEntity {
@@ -16,7 +13,8 @@ public class IncidentEntity {
 
     private String description;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private IncidentEntityStatus status;
 
     public Long getId() {
         return id;
@@ -42,11 +40,11 @@ public class IncidentEntity {
         this.description = description;
     }
 
-    public String getStatus() {
+    public IncidentEntityStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(IncidentEntityStatus status) {
         this.status = status;
     }
 }

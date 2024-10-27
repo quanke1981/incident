@@ -9,7 +9,7 @@ public class Incident implements Serializable {
 
     private String description;
 
-    private String status;
+    private IncidentStatus status;
 
     public Long getId() {
         return id;
@@ -35,11 +35,11 @@ public class Incident implements Serializable {
         this.description = description;
     }
 
-    public String getStatus() {
+    public IncidentStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(IncidentStatus status) {
         this.status = status;
     }
 }

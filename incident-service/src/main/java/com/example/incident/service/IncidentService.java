@@ -1,15 +1,19 @@
 package com.example.incident.service;
 
 import com.example.incident.entity.IncidentEntity;
+import com.example.incident.entity.IncidentEntityStatus;
+import com.example.incident.exception.IncidentNotFoundException;
 import com.example.incident.model.Incident;
+import com.example.incident.model.IncidentStatus;
 import com.example.incident.model.PageInfo;
 import com.example.incident.repository.IncidentRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.incident.repository.IncidentSpecification;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +49,11 @@ public class IncidentService {
     }
 
     @Transactional(readOnly = true)
-    public PageInfo<Incident> getIncidents(Pageable pageable) {
-        return new PageInfo<>(incidentRepository.findAll(pageable)
+    public PageInfo<Incident> getIncidents(String title, String description, String status, Pageable pageable) {
+        Specification<IncidentEntity> spec = Specification.where(IncidentSpecification.titleContains(title))
+                .and(IncidentSpecification.descriptionContains(description))
+                .and(IncidentSpecification.statusEquals(status));
+        return new PageInfo<>(incidentRepository.findAll(spec, pageable)
                 .map(incidentEntity -> mvcConversionService.convert(incidentEntity, Incident.class)));
     }
 
@@ -70,7 +77,7 @@ public class IncidentService {
             IncidentEntity incidentEntity = new IncidentEntity();
             incidentEntity.setTitle(incident.getTitle());
             incidentEntity.setDescription(incident.getDescription());
-            incidentEntity.setStatus(incident.getStatus());
+            incidentEntity.setStatus(IncidentEntityStatus.valueOf(incident.getStatus().name()));
             return incidentEntity;
         }).collect(toList()));
 
@@ -82,7 +89,7 @@ public class IncidentService {
     @CacheEvict(cacheNames = "incidentCache", key = "#id")
     public void deleteIncident(long id) {
         if (!incidentRepository.existsById(id)) {
-            throw new EntityNotFoundException(String.format("Incident with id %1$d is not found", id));
+            throw new IncidentNotFoundException(String.format("Incident with id %1$d is not found", id));
         }
 
         incidentRepository.deleteById(id);
@@ -94,12 +101,12 @@ public class IncidentService {
         IncidentEntity incidentEntity = getIncidentById(id);
         incidentEntity.setTitle(incident.getTitle());
         incidentEntity.setDescription(incident.getDescription());
-        incidentEntity.setStatus(incident.getStatus());
+        incidentEntity.setStatus(IncidentEntityStatus.valueOf(incident.getStatus().name()));
         return mvcConversionService.convert(incidentRepository.save(incidentEntity), Incident.class);
     }
 
     private IncidentEntity getIncidentById(long id) {
         return incidentRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Incident with id %1$d is not found", id)));
+                .orElseThrow(() -> new IncidentNotFoundException(String.format("Incident with id %1$d is not found", id)));
     }
 }

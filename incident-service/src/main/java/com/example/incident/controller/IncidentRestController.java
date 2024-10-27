@@ -1,6 +1,7 @@
 package com.example.incident.controller;
 
 import com.example.incident.model.Incident;
+import com.example.incident.model.IncidentStatus;
 import com.example.incident.model.PageInfo;
 import com.example.incident.service.IncidentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,8 +39,13 @@ public class IncidentRestController {
             @ApiResponse(responseCode = "200", description = "Successful"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<PageInfo<Incident>> getAllIncidents(Pageable pageable) {
-        return ResponseEntity.ok(incidentService.getIncidents(pageable));
+    public ResponseEntity<PageInfo<Incident>> getAllIncidents(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) String status,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(incidentService.getIncidents(title, description, status, pageable));
     }
 
     @PostMapping("/incidents")

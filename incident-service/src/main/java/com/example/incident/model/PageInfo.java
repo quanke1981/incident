@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public class PageInfo<R> {
-    private List<R> data;
+    private List<R> content;
     private long totalElement;
     private int pageNumber;
     private int pageSize;
@@ -18,19 +18,19 @@ public class PageInfo<R> {
     }
 
     public PageInfo(Page<R> page) {
-        this.data = page.getContent();
+        this.content = page.getContent();
         this.totalElement = page.getTotalElements();
         this.pageNumber = page.getNumber();
         this.pageSize = page.getSize();
 
     }
 
-    public List<R> getData() {
-        return data;
+    public List<R> getContent() {
+        return content;
     }
 
-    public void setData(List<R> data) {
-        this.data = data;
+    public void setContent(List<R> content) {
+        this.content = content;
     }
 
     public long getTotalElement() {
