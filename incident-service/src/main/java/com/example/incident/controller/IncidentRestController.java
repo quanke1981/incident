@@ -43,7 +43,7 @@ public class IncidentRestController {
     }
 
     @PostMapping("/incidents")
-    @Operation(summary = "Create an incident", description = "Create an incident")
+    @Operation(summary = "Create incidents", description = "Create incidents")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
