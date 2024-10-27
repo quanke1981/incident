@@ -9,12 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableCaching
 public class IncidentConfig {
-
-//    @Bean
-//    public DatasourceProxyBeanPostProcessor datasourceProxyBeanPostProcessor() {
-//        return new DatasourceProxyBeanPostProcessor();
-//    }
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
