@@ -32,7 +32,7 @@ const IncidentList = () => {
     return (
         <div>
             <h2>Incident List</h2>
-            <input type="text" placeholder="Search Incidents..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>            
+            <input type="text" placeholder="Search incidents by title..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>            
             <ul>
                 <li class="header">
                     <div>Title</div>

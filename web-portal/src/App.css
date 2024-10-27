@@ -133,3 +133,7 @@ div#root {
   width: 80%;
   margin: 0 auto;
 }
+
+p.home {
+  margin: 50 auto;
+}
