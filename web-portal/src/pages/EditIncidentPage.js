@@ -22,7 +22,7 @@ function EditIncidentPage() {
     };
 
     const handleSubmit = (data) => {
-        updateIncident(id, data).then(navigate('/incidents'));
+        updateIncident(id, data).then(response => navigate('/incidents'));
     };
 
     return (
