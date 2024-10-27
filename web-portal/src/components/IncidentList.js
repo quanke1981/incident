@@ -32,13 +32,23 @@ const IncidentList = () => {
     return (
         <div>
             <h2>Incident List</h2>
-            <input type="text" placeholder="Search Incidents..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+            <input type="text" placeholder="Search Incidents..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>            
             <ul>
+                <li class="header">
+                    <div>Title</div>
+                    <div>Description</div>
+                    <div>Status</div>
+                    <div class="action">&nbsp;</div>
+                </li>
                 {filteredIncidents.length > 0  && filteredIncidents.map((incident) => (
                     <li key={incident.id}>
-                        {incident.title} - {incident.description} - {incident.status}
-                        <button onClick={() => editIncident(incident.id)}>Edit</button>
-                        <button onClick={() => delIncident(incident.id)}>Delete</button>
+                        <div>{incident.title}</div>
+                        <div>{incident.description}</div>
+                        <div>{incident.status}</div>
+                        <div class="action">
+                            <button onClick={() => editIncident(incident.id)}>Edit</button>
+                            <button onClick={() => delIncident(incident.id)}>Delete</button>
+                        </div>
                     </li>
                 ))}
             </ul>

@@ -56,6 +56,11 @@ button.delete:hover {
   background-color: #d44040;
 }
 
+button.small-button {
+  width: 200px;
+  margin: 0 auto;
+}
+
 /* List of Incidents */
 ul {
   list-style-type: none;
@@ -108,4 +113,23 @@ form button[type="submit"] {
 
 form button[type="submit"]:hover {
   background-color: #357ab8;
+}
+
+li.header {
+  font-weight: 600;
+  
+}
+
+li div {
+  width: 30%;
+}
+
+li div.action {
+  width: 10%;
+  text-align: center;
+}
+
+div#root {
+  width: 80%;
+  margin: 0 auto;
 }

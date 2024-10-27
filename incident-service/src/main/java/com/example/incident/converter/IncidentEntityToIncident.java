@@ -13,7 +13,7 @@ public class IncidentEntityToIncident implements Converter<IncidentEntity, Incid
     public Incident convert(@Nonnull IncidentEntity incidentEntity) {
         Incident incident = new Incident();
         incident.setId(incidentEntity.getId());
-        incident.setName(incidentEntity.getName());
+        incident.setTitle(incidentEntity.getTitle());
         incident.setDescription(incidentEntity.getDescription());
         incident.setStatus(incidentEntity.getStatus());
         return incident;

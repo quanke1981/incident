@@ -5,6 +5,7 @@ services:
     build:
       context: ./incident-service
       dockerfile: Dockerfile
+    image: incident-management-service:1
     container_name: incident-management-service
     ports:
       - "8080:8080"
@@ -15,6 +16,7 @@ services:
     build:
       context: ./web-portal
       dockerfile: Dockerfile
+    image: web-portal:1
     container_name: web-portal
     ports:
       - "3000:3000"

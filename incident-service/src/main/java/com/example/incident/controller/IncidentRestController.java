@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class IncidentRestController {
 
@@ -46,8 +48,8 @@ public class IncidentRestController {
             @ApiResponse(responseCode = "200", description = "Successful"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<Incident> createIncident(@RequestBody Incident incident) {
-        return ResponseEntity.ok(incidentService.createIncident(incident));
+    public ResponseEntity<List<Incident>> createIncident(@RequestBody List<Incident> incidents) {
+        return ResponseEntity.ok(incidentService.createIncidents(incidents));
     }
 
     @PutMapping("/incidents/{id}")
