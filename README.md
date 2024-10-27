@@ -11,5 +11,5 @@ This project contains two services, one is incident management service built by 
         - Dockerfile: docker configuration file
     - docker-compose.yml: config file for docker-compose execution
 
-# `docker-compose up --build`
-To build and deploy incident management service and web portal to a docker environment, run docker-compose up --build under this folder, keeping the folder structure of the project.
+# To deploy services to docker environment
+To build and deploy incident management service and web portal to a docker environment, run "docker-compose up --build" under this folder, keeping the folder structure of the project.
