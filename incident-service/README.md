@@ -18,9 +18,3 @@ use browser to open http://{hostname:port}/swagger-ui/index.html
 2. Add an HTTP request sampler for the APIs of the deployed incident service 
 3. Add listeners to analyze the result
 4. Run the test
-
-# To deploy the service to docker environment
-If you would like to deploy the service to docker environment
-   - with compiled .jar file, run docker build -f ./Dockerfile -t incident-service:latest under incident-service folder
-   - with source code, run docker build -f ./Dockerfile-build -t incident-service:latest under incident-service folder
-
