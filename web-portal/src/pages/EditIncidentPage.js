@@ -15,7 +15,7 @@ function EditIncidentPage() {
     const loadIncident = () => {
         getIncidents()
         .then(response => {
-            const incident = response.data.data.find((inc) => inc.id == id);
+            const incident = response.data.content.find((inc) => inc.id == id);
             setIncident(incident);
         })
         .catch(error => console.error('Error fetching incidents: ', error));
