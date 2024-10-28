@@ -21,7 +21,7 @@ const IncidentForm = ({ onSubmit, incident}) => {
                 <option value="IN_PROGRESS">In Progress</option>
                 <option value="CLOSED">Closed</option>
             </select>
-            <button type="submit" class="small-button">Save</button>
+            <button type="submit" className="small-button">Save</button>
         </form>
     );
 };
