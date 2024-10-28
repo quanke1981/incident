@@ -18,7 +18,7 @@ const IncidentForm = ({ onSubmit, incident}) => {
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Description' required/>    
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                 {Object.entries(STATUS_VALUES).map(([key, text]) => (
-                    <option key={key}>{text}</option>
+                    <option key={key} value={key}>{text}</option>
                 ))}
             </select>
             <button type="submit" className="small-button">Save</button>
