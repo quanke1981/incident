@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getIncidents, deleteIncident} from '../api';
 import { useNavigate } from 'react-router-dom';
+import {STATUS_VALUES} from '../const';
 
 const IncidentList = () => {
     const [incidents, setIncidents] = useState([]);
@@ -22,7 +23,11 @@ const IncidentList = () => {
     const loadIncidents = (params) => {
         getIncidents(params)
         .then(response => {  
-            setIncidents(response.data.content);
+            
+            setIncidents(response.data.content.map(incident => ({
+                ...incident,
+                statusDisplay: STATUS_VALUES[incident.status] || "Unknown status"
+            })));
             setPage(response.data.pageNumber);
             setTotalPages(response.data.totalPages);
         })
@@ -54,7 +59,7 @@ const IncidentList = () => {
                     <li key={incident.id}>
                         <div>{incident.title}</div>
                         <div>{incident.description}</div>
-                        <div>{incident.status}</div>
+                        <div>{incident.statusDisplay}</div>
                         <div className="action">
                             <button onClick={() => editIncident(incident.id)}>Edit</button>
                             <button onClick={() => delIncident(incident.id)}>Delete</button>
