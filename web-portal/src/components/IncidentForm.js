@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const IncidentForm = ({ onSubmit, incident}) => {
     const [title, setTitle] = useState(incident?.title || '');
     const [description, setDescription] = useState(incident?.description || '');
-    const [status, setStatus] = useState(incident?.status || 'Open');
+    const [status, setStatus] = useState(incident?.status || 'OPEN');
 
     const handleSubmit = (e) => {
         e.preventDefault();
