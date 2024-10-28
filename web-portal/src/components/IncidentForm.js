@@ -17,9 +17,9 @@ const IncidentForm = ({ onSubmit, incident}) => {
             <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title' required/>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Description' required/>
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="Open">Open</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Closed">Closed</option>
+                <option value="OPEN">Open</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="CLOSED">Closed</option>
             </select>
             <button type="submit" class="small-button">Save</button>
         </form>
