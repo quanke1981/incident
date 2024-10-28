@@ -26,7 +26,6 @@ const IncidentList = () => {
             setIncidents(response.data.content);
             setPage(response.data.pageNumber);
             setTotalPages(response.data.totalPages);
-
         })
         .catch(error => console.error('Error fetching incidents: ', error));
     };
@@ -38,7 +37,6 @@ const IncidentList = () => {
     const delIncident = (id) => {
         deleteIncident(id).then(() => loadIncidents({page: page, pageSize: size, title: searchQuery}));        
     }
-
 
     const filteredIncidents = incidents.filter((incident) => incident.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
