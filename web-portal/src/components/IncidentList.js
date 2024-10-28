@@ -8,7 +8,6 @@ const IncidentList = () => {
     const [size] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-    const [titleFilter, setTitleFilter] = useState('');
     const navigate = useNavigate();
     const params = {
       page,
