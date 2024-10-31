@@ -8,7 +8,9 @@ RUN npm install
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=build /app/web-portal/build /usr/share/nginx/html
+COPY --from=frontend-build /app/web-portal/build /usr/share/nginx/html
 
-EXPOSE 3000
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
